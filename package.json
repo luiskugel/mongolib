@@ -1,0 +1,25 @@
+{
+  "name": "mongolib",
+  "version": "1.0.0",
+  "description": "A small library for mongoDB.",
+  "main": "mongolib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luiskugel/mongolib.git"
+  },
+  "keywords": [
+    "mongo"
+  ],
+  "author": "Luis Kugel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luiskugel/mongolib/issues"
+  },
+  "homepage": "https://github.com/luiskugel/mongolib#readme",
+  "dependencies": {
+    "mongodb": "^3.5.2"
+  }
+}

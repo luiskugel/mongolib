@@ -23,11 +23,11 @@ module.exports.insertDocument =  function(config, obj){
   });
 }
 
-module.exports.getDocument =  function(config, query, callback){
+module.exports.getDocument =  function(config, query, callback, field_selector={}){
   MongoClient.connect(config.url, {useUnifiedTopology: true}, function(err, db) {
     if (err) throw err;
     var dbo = db.db(config.dbName);
-    dbo.collection(config.dbCollection).find(query).toArray(function(err, result) {
+    dbo.collection(config.dbCollection).find(query).select(field_selector).toArray(function(err, result) {
       if (err) throw err;
       //console.log(result);
       db.close();

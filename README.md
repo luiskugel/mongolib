@@ -1,7 +1,6 @@
 # mongolib
 This is a small library for mongoDB.
 
-It has four functions:
 ```js
  deleteDocument(config, query) => Promise( resolve(), reject(err) )
  

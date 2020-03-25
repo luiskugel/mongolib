@@ -16,9 +16,9 @@ Where config looks like the following json objct
 ```js
 
 {
-  "url": "mongodb://localhost:27017/",
-  "dbName": "login",
-  "dbCollection":"users"
+  "url": "<mongoDBurl>",
+  "dbName": "<dbName>",
+  "dbCollection":"<dbCollaction>"
 }
 
 ```

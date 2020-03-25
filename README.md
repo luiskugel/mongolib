@@ -11,3 +11,14 @@ This is a small library for mongoDB.
  updateDocument(config, query, updatedValues) => Promise( resolve(), reject(err) )
  
 ```
+Where config looks like the following json objct
+
+```js
+
+{
+  "url": "mongodb://localhost:27017/",
+  "dbName": "login",
+  "dbCollection":"users"
+}
+
+```

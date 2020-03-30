@@ -75,7 +75,7 @@ module.exports.insertManyDocuments =  function(config, array){
     MongoClient.connect(config.url, {useUnifiedTopology: true}, function(err, db) {
       if (err) console.log(err)
       var dbo = db.db(config.dbName);
-      dbo.collection(config.dbCollection).insertOne(array, function(err, res) {
+      dbo.collection(config.dbCollection).insertMany(array, function(err, res) {
         if (err) {
           console.log(err)
           reject(err)

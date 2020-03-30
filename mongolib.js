@@ -69,3 +69,21 @@ module.exports.updateDocument =  function(config, query, updatedValues){
     });
   })
 }
+
+module.exports.insertManyDocuments =  function(config, array){
+  return new Promise((resolve, reject) => {
+    MongoClient.connect(config.url, {useUnifiedTopology: true}, function(err, db) {
+      if (err) console.log(err)
+      var dbo = db.db(config.dbName);
+      dbo.collection(config.dbCollection).insertOne(array, function(err, res) {
+        if (err) {
+          console.log(err)
+          reject(err)
+        }else{
+          resolve()
+        }
+        db.close(); 
+      });
+    });
+  })
+}

@@ -5,10 +5,11 @@ class MongoLib {
     this.dbname = dbname;
     this.collection = collection;
   }
-  connect(url) {
+  connect(url, callback) {
     MongoClient.connect(url, { useUnifiedTopology: true }, function (err, db) {
       if (err) console.log(err);
       this.db = db;
+      callback(err);
     });
   }
   delete(query, dbname = this.dbname, collection = this.collection) {

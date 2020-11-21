@@ -4,16 +4,24 @@ class MongoLib {
   constructor(dbname, collection) {
     this.dbname = dbname;
     this.collection = collection;
+    this.connected = false;
   }
   connect(url, callback) {
     MongoClient.connect(url, { useUnifiedTopology: true }, (err, db) => {
       if (err) console.log(err);
       this.db = db;
+      this.connected = true;
       callback(err);
     });
   }
   delete(query, dbname = this.dbname, collection = this.collection) {
     return new Promise((resolve, reject) => {
+      if (!this.connected)
+        reject(
+          new Error(
+            "Not connected to DB. You need to call .connect() on mongolib object!"
+          )
+        );
       _getCollectionObj(dbname, collection).deleteOne(
         query,
         function (err, obj) {
@@ -29,6 +37,12 @@ class MongoLib {
   }
   insert(obj, dbname = this.dbname, collection = this.collection) {
     return new Promise((resolve, reject) => {
+      if (!this.connected)
+        reject(
+          new Error(
+            "Not connected to DB. You need to call .connect() on mongolib object!"
+          )
+        );
       this._getCollectionObj(dbname, collection).insertOne(
         obj,
         function (err, res) {
@@ -49,6 +63,12 @@ class MongoLib {
     collection = this.collection
   ) {
     return new Promise((resolve, reject) => {
+      if (!this.connected)
+        reject(
+          new Error(
+            "Not connected to DB. You need to call .connect() on mongolib object!"
+          )
+        );
       this._getCollectionObj(dbname, collection)
         .find(query)
         .project(field_selector)
@@ -68,6 +88,12 @@ class MongoLib {
     collection = this.collection
   ) {
     return new Promise((resolve, reject) => {
+      if (!this.connected)
+        reject(
+          new Error(
+            "Not connected to DB. You need to call .connect() on mongolib object!"
+          )
+        );
       this._getCollectionObj(dbname, collection).update(
         query,
         updatedValues,

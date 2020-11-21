@@ -6,7 +6,7 @@ class MongoLib {
     this.collection = collection;
   }
   connect(url, callback) {
-    MongoClient.connect(url, { useUnifiedTopology: true }, function (err, db) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, (err, db) => {
       if (err) console.log(err);
       this.db = db;
       callback(err);
@@ -29,14 +29,17 @@ class MongoLib {
   }
   insert(obj, dbname = this.dbname, collection = this.collection) {
     return new Promise((resolve, reject) => {
-      _getCollectionObj(dbname, collection).insertOne(obj, function (err, res) {
-        if (err) {
-          console.log(err);
-          reject(err);
-        } else {
-          resolve(res);
+      this._getCollectionObj(dbname, collection).insertOne(
+        obj,
+        function (err, res) {
+          if (err) {
+            console.log(err);
+            reject(err);
+          } else {
+            resolve(res);
+          }
         }
-      });
+      );
     });
   }
   get(

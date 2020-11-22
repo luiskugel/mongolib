@@ -22,7 +22,7 @@ class MongoLib {
             "Not connected to DB. You need to call .connect() on mongolib object!"
           )
         );
-      _getCollectionObj(dbname, collection).deleteMany(
+      this._getCollectionObj(dbname, collection).deleteMany(
         query,
         function (err, obj) {
           if (err) {
